@@ -25,6 +25,7 @@ const routes: Array<RouteConfig> = [
     component: Statistics
   },
   {
+    // 匹配除了上面的所有地址
     path:'*',
     component:NotFound
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="nav-wrapper">
     <div class="content">
-      <!--   插槽，外面传进来东西就放到这里   -->
+      <!--   插槽，外面传进来东西就放到 <slot/> 中   -->
       <slot/>
     </div>
     <Nav/>
