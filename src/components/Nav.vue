@@ -1,23 +1,17 @@
 <template>
   <div class="nav">
     <router-link to="/money">
-      <svg>
-        <use xlink:href="#money"/>
-      </svg>
+      <Icon name="money"/>
       记账
     </router-link>
     |
     <router-link to="/labels">
-      <svg>
-        <use xlink:href="#label"/>
-      </svg>
+      <Icon name="label"/>
       标签
     </router-link>
     |
     <router-link to="/statistics">
-      <svg>
-        <use xlink:href="#statistics"/>
-      </svg>
+      <Icon name="statistics"/>
       统计</router-link>
   </div>
 </template>
