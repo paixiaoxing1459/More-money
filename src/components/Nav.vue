@@ -1,19 +1,17 @@
 <template>
-  <div class="nav">
-    <router-link to="/money">
+  <nav>
+    <router-link to="/money" class="item">
       <Icon name="money"/>
       记账
     </router-link>
-    |
-    <router-link to="/labels">
+    <router-link to="/labels" class="item">
       <Icon name="label"/>
       标签
     </router-link>
-    |
-    <router-link to="/statistics">
+    <router-link to="/statistics" class="item">
       <Icon name="statistics"/>
       统计</router-link>
-  </div>
+  </nav>
 </template>
 
 <script lang="ts">
@@ -30,5 +28,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .nav{border: 1px solid red}
+  nav{
+    display: flex;
+    flex-direction: row;
+    // CSS box-shadow 属性用于 在元素的框架上添加阴影效果
+    box-shadow: 0 0 3px 1px rgba(0,0,0,0.25);
+    font-size: 12px;
+
+    // 这样写就是 scss 的语法（并没有了解）
+    > .item{
+      padding: 2px 0;
+      width: 33.333333%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      .icon{
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
 </style>
