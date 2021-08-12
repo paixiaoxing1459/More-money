@@ -16,5 +16,6 @@ body{
   //  修改默认行高
   line-height: 1.5;
   font-family: $font-black;
+  line-height: 16px;
 }
 </style>

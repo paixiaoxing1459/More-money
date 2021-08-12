@@ -14,7 +14,8 @@
     <div>
       <label class="notes">
         <span class="name">备注</span>
-        <input type="text">
+<!--   placeholder 是 input 的一个占位符     -->
+        <input type="text" placeholder="输入备注">
       </label>
     </div>
     <div>
@@ -52,6 +53,85 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/style/helper.scss";
+  @import "../assets/style/helper.scss";
+  .types{
+    background-color: #c4c4c4;
+    display: flex;
+    text-align: center;
+    font-size: 24px;
+    > li{
+      width: 50%;
+      line-height: 64px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    //  相对定位
+      position: relative;
+    //  .selected 表示 li 后代被 selected
+    //  &.selected 表示 当前 li 被选择
+    //  伪元素 after
+      &.selected::after{
+        // 没有 content 就不会出现
+        content: '';
+        // 子绝父相，用绝对定位来设置被选中 li 的底部，父元素相对定位
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: #333;
+      }
+    }
+  }
+  .notes{
+    font-size: 14px;
+    background: #f5f5f5;
+    padding-left: 16px;
+    display: flex;
+    align-items: center;
+    .name{
+      padding-right: 16px;
+    }
+    input{
+      height: 64px;
+      flex-grow: 1;
+      background: transparent;
+      border: none;
+      padding-right: 16px;
+    }
+  }
+  .tags{
+    font-size: 14px;
+    padding: 16px;
 
+    // 选择 tags 里面的current
+    > .current{
+      display: flex;
+
+      > li{
+        background: #d9d9d9;
+        $h:24px;
+        height: $h;
+        line-height: $h;
+        // height == light , 可使一行的文字居中，但是如果有两行就不行
+        border-radius: $h/2;
+        padding: 0 16px;
+        margin-right: 12px;
+      }
+    }
+    > .new{
+      padding-top: 16px;
+      button{
+        background: transparent;
+        border: none;
+        color: #999;
+        border-bottom: 1px solid;
+        padding: 0 3px;
+      }
+    }
+    // tags 本身被选中
+    &selected{
+
+    }
+  }
 </style>

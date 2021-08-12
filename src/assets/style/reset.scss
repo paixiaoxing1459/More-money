@@ -8,3 +8,13 @@ a{
   // 颜色是继承 只是：继承 icon 的颜色吗？
   color: inherit;
 }
+ul,li{
+  list-style: none;
+}
+button,input{
+  font:inherit;
+}
+// 任何被选中的元素
+:focus{
+  outline: none;
+}
