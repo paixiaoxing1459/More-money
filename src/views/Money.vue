@@ -14,8 +14,8 @@
     <div>
       <label class="notes">
         <span class="name">备注</span>
-<!--   placeholder 是 input 的一个占位符     -->
-        <input type="text" placeholder="输入备注">
+        <!--   placeholder 是 input 的一个占位符     -->
+        <input type="text" placeholder="输入备注" />
       </label>
     </div>
     <div>
@@ -38,8 +38,8 @@
         <button>7</button>
         <button>8</button>
         <button>9</button>
-        <button>ok</button>
-        <button>0</button>
+        <button class="ok">ok</button>
+        <button class="zero">0</button>
         <button>.</button>
       </div>
     </div>
@@ -48,90 +48,145 @@
 
 <script lang="ts">
 export default {
-  name: 'money',
+  name: "money",
 };
 </script>
 
 <style lang="scss" scoped>
-  @import "../assets/style/helper.scss";
-  .types{
-    background-color: #c4c4c4;
+@import "../assets/style/helper.scss";
+.numberPad {
+  .output {
+    @extend %clearFix;
+    @extend %innerShadow;
+    font-size: 36px;
+    font-family: Consolas, monospace;
+    padding: 28px 16px;
+    text-align: right;
+  }
+  .buttons {
+    @extend %clearFix;
+    > button {
+      width: 25%;
+      height: 64px;
+      float: left;
+      background: transparent;
+      border: none;
+      &.ok {
+        height: 64px * 2;
+        float: right;
+      }
+      &.zero {
+        width: 25% * 2;
+      }
+      $bg: #f2f2f2;
+      &:nth-child(1) {
+        background: $bg;
+      }
+      &:nth-child(2),
+      &:nth-child(5) {
+        background: darken($bg, 5%);
+      }
+      &:nth-child(3),
+      &:nth-child(6),
+      &:nth-child(9) {
+        background: darken($bg, 5% * 2);
+      }
+      &:nth-child(4),
+      &:nth-child(7),
+      &:nth-child(10) {
+        background: darken($color: $bg, $amount: 5% * 3);
+      }
+      &:nth-child(8),
+      &:nth-child(11),
+      &:nth-child(13) {
+        background: darken($color: $bg, $amount: 5% * 4);
+      }
+      &:nth-child(14) {
+        background: darken($color: $bg, $amount: 5% * 5);
+      }
+      &:nth-child(12) {
+        background: darken($color: $bg, $amount: 5% * 8);
+      }
+    }
+  }
+}
+.types {
+  background-color: #c4c4c4;
+  display: flex;
+  text-align: center;
+  font-size: 24px;
+  > li {
+    width: 50%;
+    line-height: 64px;
     display: flex;
-    text-align: center;
-    font-size: 24px;
-    > li{
-      width: 50%;
-      line-height: 64px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    justify-content: center;
+    align-items: center;
     //  相对定位
-      position: relative;
+    position: relative;
     //  .selected 表示 li 后代被 selected
     //  &.selected 表示 当前 li 被选择
     //  伪元素 after
-      &.selected::after{
-        // 没有 content 就不会出现
-        content: '';
-        // 子绝父相，用绝对定位来设置被选中 li 的底部，父元素相对定位
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: #333;
-      }
+    &.selected::after {
+      // 没有 content 就不会出现
+      content: "";
+      // 子绝父相，用绝对定位来设置被选中 li 的底部，父元素相对定位
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: #333;
     }
   }
-  .notes{
-    font-size: 14px;
-    background: #f5f5f5;
-    padding-left: 16px;
+}
+.notes {
+  font-size: 14px;
+  background: #f5f5f5;
+  padding-left: 16px;
+  display: flex;
+  align-items: center;
+  .name {
+    padding-right: 16px;
+  }
+  input {
+    height: 64px;
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    padding-right: 16px;
+  }
+}
+.tags {
+  font-size: 14px;
+  padding: 16px;
+
+  // 选择 tags 里面的current
+  > .current {
     display: flex;
-    align-items: center;
-    .name{
-      padding-right: 16px;
+
+    > li {
+      background: #d9d9d9;
+      $h: 24px;
+      height: $h;
+      line-height: $h;
+      // height == light , 可使一行的文字居中，但是如果有两行就不行
+      border-radius: $h/2;
+      padding: 0 16px;
+      margin-right: 12px;
     }
-    input{
-      height: 64px;
-      flex-grow: 1;
+  }
+  > .new {
+    padding-top: 16px;
+    button {
       background: transparent;
       border: none;
-      padding-right: 16px;
+      color: #999;
+      border-bottom: 1px solid;
+      padding: 0 3px;
     }
   }
-  .tags{
-    font-size: 14px;
-    padding: 16px;
-
-    // 选择 tags 里面的current
-    > .current{
-      display: flex;
-
-      > li{
-        background: #d9d9d9;
-        $h:24px;
-        height: $h;
-        line-height: $h;
-        // height == light , 可使一行的文字居中，但是如果有两行就不行
-        border-radius: $h/2;
-        padding: 0 16px;
-        margin-right: 12px;
-      }
-    }
-    > .new{
-      padding-top: 16px;
-      button{
-        background: transparent;
-        border: none;
-        color: #999;
-        border-bottom: 1px solid;
-        padding: 0 3px;
-      }
-    }
-    // tags 本身被选中
-    &selected{
-
-    }
+  // tags 本身被选中
+  &selected {
   }
+}
 </style>
