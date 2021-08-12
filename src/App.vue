@@ -1,42 +1,20 @@
 <template>
-  <div>
+  <div id="app">
     <router-view/>
   </div>
 </template>
 
 <style lang="scss">
+
+@import "./assets/style/reset.scss";
+@import "./assets/style/helper.scss";
 body{
-//  修改默认行高
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // 如果页面
+  color: #333;
+  //  修改默认行高
   line-height: 1.5;
+  font-family: $font-black;
 }
-a{
-  // 去掉 a 标签的样式
-  text-decoration: none;
-  // 颜色是继承 只是：继承 icon 的颜色吗？
-  color: inherit;
-}
-  *{
-    margin: 0;padding: 0;
-    box-sizing: border-box;
-  }
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-  }
-
-  #nav {
-    padding: 30px;
-
-    a {
-      font-weight: bold;
-      color: #2c3e50;
-
-      &.router-link-exact-active {
-        color: #42b983;
-      }
-    }
-  }
 </style>
