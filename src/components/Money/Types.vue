@@ -2,28 +2,36 @@
   <div>
     <ul class="types">
       <li :class="type === '-' && 'selected' "
-      @click="selectType('-')">支出</li>
+          @click="selectType('-')">支出
+      </li>
       <li :class="type === '+' && 'selected' "
-      @click="selectType('+')">收入</li>
+          @click="selectType('+')">收入
+      </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
-  import {Component} from 'vue-property-decorator';
+import Vue from 'vue';
+import {Component} from 'vue-property-decorator';
 
-  @Component
-  export default class Types extends Vue{
-    type = '-' // '-' 表支出，'+'表收入
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    selectType(type:string){
-      if(type !== '-' && type !== '+'){
-        throw new Error('type is unknown!!')
-      }
-      this.type = type
-    }
+@Component({
+  props: {
+    propMessage: String
   }
+})
+export default class Types extends Vue {
+  type = '-'; // '-' 表支出，'+'表收入
+  helloMsg = 'Hello,' + this.propMessage;
+
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  selectType(type: string) {
+    if (type !== '-' && type !== '+') {
+      throw new Error('type is unknown!!');
+    }
+    this.type = type;
+  }
+}
 
 
 // export default {
@@ -53,6 +61,7 @@
   display: flex;
   text-align: center;
   font-size: 24px;
+
   > li {
     width: 50%;
     line-height: 64px;
