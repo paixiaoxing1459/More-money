@@ -16,7 +16,7 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     '@typescript-eslint/no-var-requires': 0,
     // 关掉之前的语法检查
-    'no-undef': 'off',
+    // 'no-undef': 'off',
   },
   overrides: [
     {
