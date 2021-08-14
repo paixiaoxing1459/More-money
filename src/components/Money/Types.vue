@@ -13,16 +13,11 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import {Component} from 'vue-property-decorator';
+import {Component, Prop} from 'vue-property-decorator';
 
-@Component({
-  props: {
-    propMessage: String
-  }
-})
+@Component
 export default class Types extends Vue {
   type = '-'; // '-' 表支出，'+'表收入
-  helloMsg = 'Hello,' + this.propMessage;
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   selectType(type: string) {
@@ -31,28 +26,9 @@ export default class Types extends Vue {
     }
     this.type = type;
   }
+
 }
 
-
-// export default {
-//   name: 'Types',
-//   data(){
-//     return{
-//       // - 表示支出。+ 表示收入
-//       type:'-'
-//     }
-//   },
-//   methods:{
-//     selectType(type){ // type 只能是 + 和 - 中的一个
-//       if(type !== "-" && type !== "+"){
-//         // 抛出一个错误
-//         throw new Error('type is unknown!!')
-//       }
-//
-//       this.type=type
-//     }
-//   }
-// };
 </script>
 
 <style lang="scss" scoped>
