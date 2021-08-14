@@ -3,8 +3,8 @@
     <label class="notes">
       <span class="name">备注</span>
       <!--   placeholder 是 input 的一个占位符     -->
-      <input type="text" :value="value"
-             @input="onInput"
+      <input type="text"
+             v-model="value"
              placeholder="输入备注" />
     </label>
   </div>
@@ -17,10 +17,6 @@ import {Component} from 'vue-property-decorator';
 @Component
   export default class Notes extends Vue{
     value = '';
-    onInput(event:keyboradEvent){
-      const input = event.target as HTMLInputElement;
-      this.value=input.value;
-    }
   }
 </script>
 
