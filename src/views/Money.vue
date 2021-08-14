@@ -3,7 +3,7 @@
     <NumberPad/>
     <Types :xxx=" 3333 "/>
     <Notes/>
-    <Tags :data-source="tags"/>
+    <Tags :data-source.sync="tags"/>
 
   </Layout>
 </template>
@@ -13,7 +13,8 @@ import NumberPad from '@/components/Money/NumberPad.vue';
 import Types from '@/components/Money/Types.vue';
 import Tags from '@/components/Money/Tags.vue';
 import Notes from '@/components/Money/Notes.vue';
-export default {
+
+let newVar = {
   name: "money",
   components: {Notes, Tags, Types, NumberPad},
   data(){
@@ -22,6 +23,7 @@ export default {
     }
   }
 };
+export default newVar;
 </script>
 
 <style lang="scss">
