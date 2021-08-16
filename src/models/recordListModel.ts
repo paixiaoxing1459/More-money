@@ -1,5 +1,5 @@
 const localStorageKeyName = 'recordList';
-const model = {
+const recordListModel = {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   clone(data:RecordItem[] | RecordItem) {
@@ -17,4 +17,4 @@ const model = {
   }
 };
 
-export default model;
+export default recordListModel;
