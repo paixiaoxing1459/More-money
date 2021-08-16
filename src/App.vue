@@ -17,5 +17,6 @@ body{
   line-height: 1.5;
   font-family: $font-black;
   line-height: 16px;
+  background: #f5f5f5;
 }
 </style>
