@@ -1,27 +1,32 @@
 <template>
   <div>
     <label class="notes">
-      <span class="name">备注</span>
+      <span class="name">{{ this.fieldName }}</span>
       <!--   placeholder 是 input 的一个占位符     -->
       <input type="text"
              v-model="value"
-             placeholder="输入备注" />
+             :placeholder="this.placeholder"/>
     </label>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import {Component,Watch} from 'vue-property-decorator';
+import {Component, Prop, Watch} from 'vue-property-decorator';
 
 @Component
-  export default class Notes extends Vue{
-    value = '';
-    @Watch('value')
-    onValueChanged(value:string){
-      this.$emit('update:value',value)
-    }
+export default class Notes extends Vue {
+  value = '';
+
+  @Prop({required: true}) fieldName!: string;
+  @Prop() placeholder?: string;
+
+  @Watch('value')
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  onValueChanged(value: string) {
+    this.$emit('update:value', value);
   }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -31,9 +36,11 @@ import {Component,Watch} from 'vue-property-decorator';
   padding-left: 16px;
   display: flex;
   align-items: center;
+
   .name {
     padding-right: 16px;
   }
+
   input {
     height: 64px;
     flex-grow: 1;
