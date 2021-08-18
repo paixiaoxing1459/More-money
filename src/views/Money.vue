@@ -15,23 +15,18 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { Component, Watch } from "vue-property-decorator";
+import { Component} from "vue-property-decorator";
 import NumberPad from "@/components/Money/NumberPad.vue";
 import Types from "@/components/Money/Types.vue";
 import Tags from "@/components/Money/Tags.vue";
 import FormItem from "@/components/Money/FormItem.vue";
-import recordListModel from "@/models/recordListModel";
-
-// eslint-disable-next-line no-undef
-const recordList = recordListModel.fetch();
 
 @Component({
   components: { FormItem, Tags, Types, NumberPad },
 })
 export default class Money extends Vue {
   tags = window.tagList;
-  // eslint-disable-next-line no-undef
-  recordList: RecordItem[] = recordList;
+  recordList = window.recordList;
   // eslint-disable-next-line no-undef
   record: RecordItem = {
     tags: [],
@@ -57,14 +52,9 @@ export default class Money extends Vue {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   saveRecord() {
-   recordListModel.create(this.record);
+   window.createRecord(this.record);
   }
 
-  @Watch("recordList")
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  onRecordListChange() {
-    recordListModel.save();
-  }
 }
 </script>
 

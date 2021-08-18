@@ -11,6 +11,7 @@ const recordListModel = {
     const record2: RecordItem = clone(record);
     record2.createdAt = new Date();
     this.data.push(record2);
+    this.save();
   },
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -21,8 +22,7 @@ const recordListModel = {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   save() {
-    window.localStorage.setItem(localStorageKeyName,
-      JSON.stringify(this.data));
+    window.localStorage.setItem(localStorageKeyName, JSON.stringify(this.data));
   }
 };
 
