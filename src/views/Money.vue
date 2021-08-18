@@ -59,18 +59,13 @@ export default class Money extends Vue {
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   saveRecord() {
-    // 深拷贝一下
-    // eslint-disable-next-line no-undef
-    const record2: RecordItem = recordListModel.clone(this.record);
-    record2.createdAt = new Date();
-    this.recordList.push(record2);
-    console.log(this.recordList);
+   recordListModel.create(this.record);
   }
 
   @Watch("recordList")
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   onRecordListChange() {
-    recordListModel.save(this.recordList);
+    recordListModel.save();
   }
 }
 </script>

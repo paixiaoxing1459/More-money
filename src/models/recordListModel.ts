@@ -1,10 +1,16 @@
-const localStorageKeyName = 'recordList';
+import clone from '@/lib/clone';
 
+const localStorageKeyName = 'recordList';
 const recordListModel = {
   data: [] as RecordItem[],
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  clone(data: RecordItem[] | RecordItem) {
-    return JSON.parse(JSON.stringify(data));
+
+  create(record: RecordItem) {
+    // 深拷贝一下
+    // eslint-disable-next-line no-undef
+    const record2: RecordItem = clone(record);
+    record2.createdAt = new Date();
+    this.data.push(record2);
   },
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
