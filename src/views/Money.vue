@@ -25,13 +25,12 @@ import tagListModel from "@/models/tagListModel";
 
 // eslint-disable-next-line no-undef
 const recordList = recordListModel.fetch();
-const tagList = tagListModel.fetch();
 
 @Component({
   components: { FormItem, Tags, Types, NumberPad },
 })
 export default class Money extends Vue {
-  tags = tagList;
+  tags = window.tagList;
   // eslint-disable-next-line no-undef
   recordList: RecordItem[] = recordList;
   // eslint-disable-next-line no-undef

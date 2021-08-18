@@ -20,10 +20,9 @@ import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
 import tagListModel from '@/models/tagListModel';
 
-tagListModel.fetch;
 @Component
 export default class Labels extends Vue {
-  tags = tagListModel.data;
+  tags = window.tagList;
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   createTag() {
