@@ -19,19 +19,20 @@
 import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
 import Button from '@/components/Button.vue';
+import store from '@/store/index2';
 
 @Component({
   components:{Button}
 })
 export default class Labels extends Vue {
-  tags = window.tagList;
+  tags = store.tagList;
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   createTag() {
     const name = window.prompt('请输入标签名：');
     //  如果 name 存在
     if (name) {
-      window.createTag(name);
+      store.createTag(name);
     }
   }
 
