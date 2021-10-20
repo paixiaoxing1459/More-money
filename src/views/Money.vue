@@ -23,13 +23,12 @@ import FormItem from "@/components/Money/FormItem.vue";
 
 @Component({
   components: { FormItem, Tags, Types, NumberPad },
-  computed:{
-    recordList(){
-      return this.$store.state.recordList
-    }
-  }
 })
 export default class Money extends Vue {
+  get recordList(){
+    return this.$store.state.recordList
+  }
+
   // eslint-disable-next-line no-undef
   record: RecordItem = {
     tags: [],
