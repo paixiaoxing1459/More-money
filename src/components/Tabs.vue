@@ -1,41 +1,43 @@
 <template>
-  <div>
-    <ul class="types">
-      <li :class="{selected: value==='-',[classPrefix+'-item']:classPrefix}"
-          @click="selectType('-')">支出
-      </li>
-      <li :class="{selected: value==='+',[classPrefix+'-item']:classPrefix}"
-          @click="selectType('+')">收入
-      </li>
-    </ul>
-  </div>
+  <ul class="tabs">
+    <li v-for="item in dataSource" :key="item.value"
+        :class="liClass(item)" @click="select(item)">{{ item.text }}
+    </li>
+  </ul>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
 import {Component, Prop} from 'vue-property-decorator';
 
-@Component
-export default class Types extends Vue {
-  @Prop(String) readonly value!: string;
-  @Prop(String) classPrefix ?: string;
+type DataSourceItem = { text: string, value: string }
 
-  // type = '-'; // '-' 表支出，'+'表收入
-  // 现在的 type 由外界传进来
+@Component
+export default class Tabs extends Vue {
+  @Prop({required: true, type: Array})
+  dataSource!: DataSourceItem[];
+  @Prop(String)
+  readonly value!: string;
+  @Prop(String)
+  classPrefix ?: string;
 
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  selectType(type: string) {
-    if (type !== '-' && type !== '+') {
-      throw new Error('type is unknown!!');
+  liClass(item: DataSourceItem){
+    return {
+      [this.classPrefix + '-tabs-item']: this.classPrefix,
+      selected: item.value === this.value
     }
-    this.$emit('update:value', type);
+  }
+
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  select(item: DataSourceItem) {
+    this.$emit('update:value', item.value);
   }
 }
-
 </script>
 
 <style lang="scss" scoped>
-.types {
+.tabs {
   background-color: #c4c4c4;
   display: flex;
   text-align: center;
