@@ -17,7 +17,7 @@ const recordStore = {
     // 深拷贝一下
     // eslint-disable-next-line no-undef
     const record2: RecordItem = clone(record);
-    record2.createdAt = new Date();
+    record2.createdAt = new Date().toISOString();
     this.recordList && this.recordList.push(record2);
     recordStore.saveRecords();
   },
