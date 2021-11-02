@@ -6,12 +6,17 @@
     />
     <div class="notes">
       <FormItem
-        field-name="备注"
-        placeholder="在这里添加备注"
-        @update:value="onUpdateNotes"
+          field-name="备注"
+          placeholder="在这里添加备注"
+          @update:value="onUpdateNotes"
       />
     </div>
     <Tags />
+
+
+
+
+
   </Layout>
 </template>
 
@@ -64,7 +69,7 @@ export default class Money extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.layout-content {
+::v-deep .layout-content {
   display: flex;
   flex-direction: column-reverse;
 }
