@@ -9,6 +9,7 @@ Vue.use(Vuex); // use 把 store 绑到 Vue.prototype 上
 const store = new Vuex.Store({
   state: {  // 类似与 vue 的 data
     recordList: [],
+    createRecordError: null,
     tagList: [],
     currentTag: undefined
   } as RootState,
@@ -22,7 +23,7 @@ const store = new Vuex.Store({
       if (idList.indexOf(id) >= 0) {
         const names = state.tagList.map(item => item.name);
         if (names.indexOf(name) >= 0) {
-          window.alert('标签名重复！')
+          window.alert('标签名重复！');
         } else {
           const tag = state.tagList.filter(item => item.id === id)[0];
           tag.name = name;
@@ -38,7 +39,7 @@ const store = new Vuex.Store({
           break;
         }
       }
-      if(index >= 0){
+      if (index >= 0) {
         state.tagList.splice(index, 1);
         store.commit('saveTags');
         router.back();
@@ -49,8 +50,8 @@ const store = new Vuex.Store({
     fetchRecords(state) {
       state.recordList = JSON.parse(window.localStorage.getItem('recordList') || '[]') as RecordItem[];
     },
-    createRecord(state, record) {
-      const record2: RecordItem = clone(record);
+    createRecord(state, record:RecordItem) {
+      const record2 = clone(record);
       record2.createdAt = new Date().toISOString();
       state.recordList.push(record2);
       store.commit('saveRecords');
@@ -62,6 +63,9 @@ const store = new Vuex.Store({
     fetchTags(state) {
       state.tagList = JSON.parse(window.localStorage
         .getItem('tagList') || '[]');
+      if(state.tagList.length === 0 || !state.tagList){
+        store.commit('createTag','吃饭');
+      }
     },
     createTag(state, name: string) {
       const names = state.tagList.map(item => item.name);
